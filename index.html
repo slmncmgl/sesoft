@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!-- SeSoft landing page, v1.1 -->
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selman Çamoğlu | Otomasyon ve entegrasyon</title>
+<meta name="description" content="CRM kurulumu, otomatik lead iletişimi, n8n otomasyonları, sesli AI asistan, dijital sözleşme ve şirket içi portallar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F3;
+  --paper:#FFFFFF;
+  --ink:#16181D;
+  --muted:#5E636E;
+  --line:#D6D9DF;
+  --chrome:linear-gradient(115deg,#fbfcfd 0%,#9aa0aa 22%,#f4f5f7 42%,#5f6571 62%,#e6e8ec 80%,#a7acb5 100%);
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Geist",system-ui,-apple-system,sans-serif;
+  font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ---------- top bar ---------- */
+.top{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:var(--maxw);margin:0 auto;padding:24px 28px;
+}
+.mark{font-weight:600;font-size:15px;letter-spacing:-0.01em}
+.mark span{color:var(--muted);font-weight:400}
+.lang{display:flex;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{
+  font:inherit;font-size:12px;font-weight:500;background:none;border:0;color:var(--muted);
+  cursor:pointer;padding:4px 11px;border-radius:999px;transition:color .2s,background .2s;
+}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 55% at 72% 48%,#ffffff 0%,rgba(255,255,255,0) 70%);
+}
+.hero .wrap{
+  position:relative;z-index:2;width:100%;
+  display:grid;grid-template-columns:1fr;gap:8px;align-items:center;
+  padding-top:96px;padding-bottom:64px;
+}
+@media(min-width:880px){.hero .wrap{grid-template-columns:1.05fr 1fr;gap:24px}}
+.hero-text{will-change:transform;order:2}
+@media(min-width:880px){.hero-text{order:1}}
+h1{
+  font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:500;
+  line-height:1.02;letter-spacing:-0.045em;margin:0 0 24px;max-width:13ch;
+}
+.lede{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--muted);max-width:44ch;margin:0 0 36px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.cta{
+  position:relative;display:inline-block;overflow:hidden;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  font-weight:500;font-size:15px;padding:15px 28px;border-radius:999px;
+  transition:transform .2s ease;
+}
+.cta::after{
+  content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);transition:left .6s ease;
+}
+.cta:hover{transform:translateY(-2px)}
+.cta:hover::after{left:130%}
+.hint{font-size:14px;color:var(--muted);max-width:30ch;line-height:1.45}
+
+.orb-wrap{order:1;display:flex;justify-content:center}
+@media(min-width:880px){.orb-wrap{order:2}}
+#orb{display:block;width:min(78vw,560px);aspect-ratio:1/1;touch-action:pan-y}
+.orb-wrap.fallback #orb{display:none}
+.orb-wrap.fallback::before{
+  content:"";display:block;width:min(62vw,420px);aspect-ratio:1/1;border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 28%,#ffffff 0 8%,rgba(255,255,255,0) 22%),
+    radial-gradient(circle at 60% 70%,#2a2d34 0,rgba(42,45,52,0) 45%),
+    linear-gradient(170deg,#f7f8fa 0%,#b8bdc6 38%,#3b3f47 52%,#9ea4ad 70%,#eef0f3 100%);
+  box-shadow:0 40px 60px -30px rgba(22,24,29,.35);
+}
+
+/* ---------- sections ---------- */
+section{padding:104px 0}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:500;letter-spacing:-0.035em;line-height:1.1;margin:0 0 44px;max-width:18ch}
+.prose{font-size:1.05rem;color:var(--muted);max-width:58ch;margin:0 0 30px}
+
+/* ---------- services ---------- */
+.svc{position:relative;border-top:1px solid var(--line)}
+.svc:last-of-type{border-bottom:1px solid var(--line)}
+.svc::before{
+  content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
+  background:var(--chrome);transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+.svc[data-open="true"]::before{width:100%}
+.svc-head{
+  width:100%;display:flex;align-items:center;gap:20px;text-align:left;
+  background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:24px 0;
+}
+.svc-title{
+  font-size:clamp(1.15rem,2.3vw,1.55rem);font-weight:500;letter-spacing:-0.025em;flex:1;
+  transition:transform .3s ease;
+}
+.svc-head:hover .svc-title{transform:translateX(6px)}
+.plus{
+  position:relative;width:34px;height:34px;flex:none;border-radius:50%;
+  border:1px solid var(--line);background:var(--paper);transition:transform .35s ease,background .35s ease;
+}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink);transform:translate(-50%,-50%)}
+.plus::before{width:12px;height:1.5px}
+.plus::after{width:1.5px;height:12px;transition:opacity .3s ease}
+.svc[data-open="true"] .plus{transform:rotate(180deg);background:var(--chrome);border-color:transparent}
+.svc[data-open="true"] .plus::after{opacity:0}
+.svc-body{overflow:hidden;height:0;transition:height .4s cubic-bezier(.4,0,.2,1)}
+.svc-body p{color:var(--muted);max-width:60ch;margin:0 0 28px;font-size:1rem}
+
+/* ---------- contact ---------- */
+.form-shell{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;padding:8px 4px}
+.form-shell iframe{display:block;width:100%;border:0;min-height:620px}
+.direct{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.direct a{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-size:14px;
+  background:var(--paper);border:1px solid var(--line);padding:11px 18px;border-radius:999px;
+  transition:border-color .2s,transform .2s;
+}
+.direct a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.direct svg{width:15px;height:15px;flex:none}
+
+footer{border-top:1px solid var(--line);padding:30px 0 110px;font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="mark">Selman Çamoğlu <span>/ SeSoft</span></div>
+  <div class="lang" role="group" aria-label="Dil / Language">
+    <button data-lang="tr" aria-pressed="true">TR</button>
+    <button data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <h1 data-tr="Dağınık süreçleri tek bir akışa bağlıyorum."
+          data-en="I connect scattered processes into a single flow.">Dağınık süreçleri tek bir akışa bağlıyorum.</h1>
+      <p class="lede"
+         data-tr="CRM'den mesajlaşmaya, sözleşmeden iç portala. Elle yaptığınız her tekrarlı adım, kendi kendine çalışan bir sisteme dönüşür."
+         data-en="From CRM to messaging, from contracts to internal portals. Every repetitive step you do by hand turns into a system that runs itself.">CRM'den mesajlaşmaya, sözleşmeden iç portala. Elle yaptığınız her tekrarlı adım, kendi kendine çalışan bir sisteme dönüşür.</p>
+      <div class="actions">
+        <a class="cta" href="#iletisim" data-tr="Projenizi anlatın" data-en="Tell me about your project">Projenizi anlatın</a>
+        <span class="hint" data-tr="Ya da sağ alttaki asistana sorun, sesli veya yazılı." data-en="Or ask the assistant in the corner, by voice or text.">Ya da sağ alttaki asistana sorun, sesli veya yazılı.</span>
+      </div>
+    </div>
+    <div class="orb-wrap"><canvas id="orb" aria-hidden="true"></canvas></div>
+  </div>
+</header>
+
+<main>
+<section id="hizmetler">
+  <div class="wrap">
+    <h2 data-tr="Size şu konularda yardımcı olabilirim" data-en="Here is where I can help">Size şu konularda yardımcı olabilirim</h2>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="CRM kurulumu ve yönetimi" data-en="CRM setup and management">CRM kurulumu ve yönetimi</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="CRM'i sıfırdan kuruyor ya da mevcut yapınızı düzenliyorum. Aşamalar, alanlar, otomatik lead ataması ve takip hatırlatmaları işinize göre tasarlanıyor, ekibiniz de kullanım konusunda eğitiliyor."
+        data-en="I set up your CRM from scratch or fix the one you have. Stages, fields, automatic lead assignment and follow up reminders are designed around your work, and your team is trained to use it.">CRM'i sıfırdan kuruyor ya da mevcut yapınızı düzenliyorum. Aşamalar, alanlar, otomatik lead ataması ve takip hatırlatmaları işinize göre tasarlanıyor, ekibiniz de kullanım konusunda eğitiliyor.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Otomatik lead iletişimi" data-en="Automated lead follow up">Otomatik lead iletişimi</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="CRM'e yeni bir aday düştüğü anda ona otomatik mesaj gider, ardından belirlenen aralıklarla e-posta zinciri devam eder. Kimse unutulmaz, ilk temas dakikalar içinde olur."
+        data-en="The moment a new lead lands in your CRM they get an automatic message, followed by an email sequence at set intervals. Nobody gets forgotten and first contact happens within minutes.">CRM'e yeni bir aday düştüğü anda ona otomatik mesaj gider, ardından belirlenen aralıklarla e-posta zinciri devam eder. Kimse unutulmaz, ilk temas dakikalar içinde olur.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Pazarlama kampanyaları" data-en="Marketing campaigns">Pazarlama kampanyaları</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="Setrow gibi platformlar üzerinden aylık e-posta, WhatsApp ve SMS kampanyalarının kurulumu: liste segmentasyonu, şablonlar, zamanlama ve sonuç raporları."
+        data-en="Monthly email, WhatsApp and SMS campaigns on platforms like Setrow: list segmentation, templates, scheduling and results reporting.">Setrow gibi platformlar üzerinden aylık e-posta, WhatsApp ve SMS kampanyalarının kurulumu: liste segmentasyonu, şablonlar, zamanlama ve sonuç raporları.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Otomasyon ve entegrasyon" data-en="Automation and integration">Otomasyon ve entegrasyon</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="n8n üzerinde kullandığınız yazılımları birbirine bağlıyorum. Form dolduğunda kayıt açılması, dosyanın arşivlenmesi, ilgili kişiye bildirim gitmesi gibi elle yapılan tekrarlı işler ortadan kalkıyor."
+        data-en="I connect the software you already use on n8n. Repetitive manual work like creating records from forms, archiving files and notifying the right person simply goes away.">n8n üzerinde kullandığınız yazılımları birbirine bağlıyorum. Form dolduğunda kayıt açılması, dosyanın arşivlenmesi, ilgili kişiye bildirim gitmesi gibi elle yapılan tekrarlı işler ortadan kalkıyor.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Sesli AI asistan" data-en="Voice AI assistant">Sesli AI asistan</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="Vapi veya Retell gibi sistemlerle web sitenize sesli ve yazılı konuşabilen bir yapay zeka asistanı kuruyorum. Ziyaretçinin sorularını yanıtlıyor, iletişim bilgilerini alıp doğrudan CRM'inize kaydediyor. Sağ alttaki asistan bunun canlı örneği."
+        data-en="I build AI assistants on platforms like Vapi or Retell that talk to your website visitors by voice or text. They answer questions, collect contact details and save them straight into your CRM. The assistant in the corner is a live example.">Vapi veya Retell gibi sistemlerle web sitenize sesli ve yazılı konuşabilen bir yapay zeka asistanı kuruyorum. Ziyaretçinin sorularını yanıtlıyor, iletişim bilgilerini alıp doğrudan CRM'inize kaydediyor. Sağ alttaki asistan bunun canlı örneği.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Dijital sözleşme sistemi" data-en="Digital contract system">Dijital sözleşme sistemi</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="Müşteriniz sözleşmeyi online okuyup onaylıyor. Onay anı, okuma bilgisiyle birlikte kayıt altına alınıyor, belge otomatik olarak arşivleniyor. Kağıt, tarama ve kargo derdi bitiyor."
+        data-en="Your client reads and accepts the contract online. The acceptance is recorded together with reading data and the document is archived automatically. No more paper, scanning or couriers.">Müşteriniz sözleşmeyi online okuyup onaylıyor. Onay anı, okuma bilgisiyle birlikte kayıt altına alınıyor, belge otomatik olarak arşivleniyor. Kağıt, tarama ve kargo derdi bitiyor.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Teklif portalı" data-en="Quotation portal">Teklif portalı</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="Fiyatların tek yerden yönetildiği, ekibin birkaç tıklamayla tutarlı teklif çıkarabildiği bir portalın kurulumu ve yönetimi."
+        data-en="Setup and management of a portal where prices live in one place and your team produces consistent quotes in a few clicks.">Fiyatların tek yerden yönetildiği, ekibin birkaç tıklamayla tutarlı teklif çıkarabildiği bir portalın kurulumu ve yönetimi.</p></div>
+    </div>
+
+    <div class="svc" data-open="false">
+      <button class="svc-head" aria-expanded="false">
+        <span class="svc-title" data-tr="Şirket içi portal" data-en="Internal company portal">Şirket içi portal</span>
+        <span class="plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-body"><p
+        data-tr="Ekibinize özel bir iç portal: izin talepleri ve onayları, personel süreçleri ve şirket dosyalarınıza soru sorabildiğiniz yapay zeka destekli bir arayüz."
+        data-en="A portal built for your team: leave requests and approvals, staff processes, and an AI powered interface that lets you ask questions of your company files.">Ekibinize özel bir iç portal: izin talepleri ve onayları, personel süreçleri ve şirket dosyalarınıza soru sorabildiğiniz yapay zeka destekli bir arayüz.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim">
+  <div class="wrap">
+    <h2 data-tr="Nasıl bir süreci otomatikleştirmek istiyorsunuz?" data-en="Which process would you like to automate?">Nasıl bir süreci otomatikleştirmek istiyorsunuz?</h2>
+    <p class="prose"
+       data-tr="Formu doldurun, iki iş günü içinde dönüş yapayım. Hemen konuşmak isterseniz asistana sorabilir ya da WhatsApp'tan yazabilirsiniz."
+       data-en="Fill in the form and I will get back to you within two business days. If you want to talk right away, ask the assistant or message me on WhatsApp.">Formu doldurun, iki iş günü içinde dönüş yapayım. Hemen konuşmak isterseniz asistana sorabilir ya da WhatsApp'tan yazabilirsiniz.</p>
+
+    <div class="form-shell">
+      <iframe data-tally-src="https://tally.so/embed/Y56bA5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+              loading="lazy" width="100%" height="620" frameborder="0" marginheight="0" marginwidth="0" title="İletişim formu"></iframe>
+    </div>
+
+    <div class="direct">
+      <a id="wa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.200 1.3-2 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.2-1.5-1.2-2.9 0-1.4.7-2 1-2.3.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a id="mail" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        <span data-tr="E-posta" data-en="Email">E-posta</span>
+      </a>
+      <a href="https://www.linkedin.com/in/camoglu/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.830-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4V9Z"/></svg>
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Selman Çamoğlu</span>
+    <span data-tr="İstanbul, Türkiye" data-en="Istanbul, Türkiye">İstanbul, Türkiye</span>
+  </div>
+</footer>
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+<script>
+/* ============================================================
+   AYARLAR: sadece bu bloğu kendine göre değiştir
+   ============================================================ */
+const CONFIG = {
+  email: "merhaba@sesoft.com.tr",          // kendi e-postan
+  whatsapp: "905000000000",                // 90 ile başlayan numaran, boşluksuz
+  waText: "Merhaba, otomasyon konusunda görüşmek istiyorum.",
+  vapi: {
+    publicKey: "VAPI_PUBLIC_KEY",          // Vapi panel > API Keys > Public Key
+    assistantId: "VAPI_ASSISTANT_ID",      // Vapi panel > Assistants > ID
+    mode: "hybrid"                         // sesli + yazılı. Çalışmazsa "voice" veya "chat" yap
+  }
+};
+
+document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("mail").href = "mailto:" + CONFIG.email;
+document.getElementById("wa").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.waText);
+
+/* ---------- Vapi asistan ---------- */
+const VAPI_TEXT = {
+  tr: {
+    label: "Selman'ın asistanı",
+    start: "Sesli konuş",
+    end: "Bitir",
+    chat: "Merhaba! Hangi süreci otomatikleştirmek istediğinizi anlatın, sorularınızı yanıtlayayım.",
+    voice: "Sesli konuşmak için başlatın.",
+    terms: "Bu görüşme kaydedilir. Paylaştığınız iletişim bilgileri yalnızca size dönüş yapmak için kullanılır. Devam ederek bunu kabul etmiş olursunuz."
+  },
+  en: {
+    label: "Selman's assistant",
+    start: "Talk by voice",
+    end: "End",
+    chat: "Hi! Tell me which process you would like to automate and I will answer your questions.",
+    voice: "Start to talk by voice.",
+    terms: "This conversation is recorded. Contact details you share are only used to get back to you. By continuing you agree to this."
+  }
+};
+const vapiReady = !CONFIG.vapi.publicKey.startsWith("VAPI_") && !CONFIG.vapi.assistantId.startsWith("VAPI_");
+function mountVapi(lang){
+  if(!vapiReady) return;
+  const old = document.querySelector("vapi-widget");
+  if(old) old.remove();
+  const t = VAPI_TEXT[lang] || VAPI_TEXT.tr;
+  const w = document.createElement("vapi-widget");
+  const attrs = {
+    "public-key": CONFIG.vapi.publicKey,
+    "assistant-id": CONFIG.vapi.assistantId,
+    "mode": CONFIG.vapi.mode,
+    "theme": "light",
+    "position": "bottom-right",
+    "size": "full",
+    "radius": "large",
+    "base-color": "#FFFFFF",
+    "accent-color": "#16181D",
+    "button-base-color": "#16181D",
+    "button-accent-color": "#FFFFFF",
+    "main-label": t.label,
+    "start-button-text": t.start,
+    "end-button-text": t.end,
+    "empty-chat-message": t.chat,
+    "empty-voice-message": t.voice,
+    "require-consent": "true",
+    "terms-content": t.terms,
+    "local-storage-key": "sesoft_widget_consent"
+  };
+  for(const k in attrs) w.setAttribute(k, attrs[k]);
+  document.body.appendChild(w);
+}
+if(vapiReady){
+  const s = document.createElement("script");
+  s.src = "https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js";
+  s.async = true;
+  s.onload = () => mountVapi(document.documentElement.lang);
+  document.body.appendChild(s);
+}
+
+/* ---------- dil ---------- */
+const langBtns = document.querySelectorAll(".lang button");
+function refreshOpenHeights(){
+  document.querySelectorAll('.svc[data-open="true"] .svc-body').forEach(b=>{
+    b.style.height = b.firstElementChild.offsetHeight + "px";
+  });
+}
+function setLang(l){
+  if(document.documentElement.lang === l) return;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-tr]").forEach(el=>{
+    const v = el.getAttribute("data-" + l);
+    if(v !== null) el.textContent = v;
+  });
+  langBtns.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
+  refreshOpenHeights();
+  if(customElements.get("vapi-widget")) mountVapi(l);
+}
+langBtns.forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+
+/* ---------- açılır hizmetler ---------- */
+document.querySelectorAll(".svc").forEach(svc=>{
+  const btn = svc.querySelector(".svc-head");
+  const body = svc.querySelector(".svc-body");
+  btn.addEventListener("click",()=>{
+    const open = svc.dataset.open === "true";
+    svc.dataset.open = String(!open);
+    btn.setAttribute("aria-expanded", String(!open));
+    body.style.height = open ? "0px" : body.firstElementChild.offsetHeight + "px";
+  });
+});
+window.addEventListener("resize", refreshOpenHeights);
+
+/* ---------- sıvı krom (WebGL) ---------- */
+(function(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cv = document.getElementById("orb");
+  const wrap = cv.parentElement;
+  const hero = document.querySelector(".hero");
+  const heroText = document.querySelector(".hero-text");
+  const gl = cv.getContext("webgl",{alpha:true,premultipliedAlpha:true,antialias:false});
+  if(!gl){ wrap.classList.add("fallback"); return; }
+
+  const VS = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
+  const FS = `
+precision highp float;
+uniform vec2 uR; uniform float uT; uniform vec2 uM; uniform float uMS;
+mat2 rot(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}
+float smin(float a,float b,float k){float h=clamp(.5+.5*(b-a)/k,0.,1.);return mix(b,a,h)-k*h*(1.-h);}
+float map(vec3 p){
+  vec3 q=p;
+  q.xz*=rot(uT*.15); q.xy*=rot(uT*.1);
+  float d=length(q)-1.;
+  d+=.07*sin(3.1*q.x+uT*.9)*sin(2.7*q.y+uT*.7)*sin(2.9*q.z+uT*1.1);
+  vec3 c1=vec3(sin(uT*.5)*1.25,cos(uT*.4)*.55,cos(uT*.5)*.5);
+  vec3 c2=vec3(cos(uT*.35+2.)*1.1,sin(uT*.45+1.)*.8,sin(uT*.3)*.6);
+  d=smin(d,length(p-c1)-.32,.45);
+  d=smin(d,length(p-c2)-.24,.4);
+  vec2 mm=uM*1.83; float l=length(mm); if(l>1.7) mm*=1.7/l;
+  float dm=smin(d,length(p-vec3(mm,.7))-.2,.6);
+  return mix(d,dm,uMS);
+}
+vec3 env(vec3 r){
+  r.xz*=rot(uT*.05+uM.x*.6);
+  r.yz*=rot(uM.y*.35);
+  float y=r.y;
+  vec3 sky=mix(vec3(.97,.98,1.),vec3(.58,.62,.69),smoothstep(.05,1.,y));
+  vec3 gnd=mix(vec3(.14,.15,.18),vec3(.72,.74,.78),smoothstep(-.1,-.9,y));
+  vec3 col=mix(gnd,sky,smoothstep(-.02,.02,y));
+  col*=1.-.35*exp(-pow(y*14.,2.));
+  col+=1.3*smoothstep(.07,0.,abs(r.x-.45))*smoothstep(-.05,.3,y)*smoothstep(.95,.5,y);
+  col+=.9*smoothstep(.05,0.,abs(r.z+.55))*smoothstep(0.,.25,y);
+  col+=.045*vec3(sin(r.x*3.+uT*.2),sin(r.x*3.+2.1),sin(r.x*3.+4.2));
+  return col;
+}
+void main(){
+  vec2 uv=(gl_FragCoord.xy*2.-uR)/min(uR.x,uR.y);
+  vec3 ro=vec3(0.,0.,4.);
+  vec3 rd=normalize(vec3(uv,-1.8));
+  float b=dot(ro,rd); float c=dot(ro,ro)-6.25; float h=b*b-c;
+  float sh=.16*exp(-(uv.x*uv.x*1.4+pow(uv.y+1.62,2.)*22.));
+  vec4 outc=vec4(vec3(.09,.1,.12)*sh,sh);
+  if(h>0.){
+    float t=max(-b-sqrt(h),0.); bool hit=false;
+    for(int i=0;i<72;i++){
+      float d=map(ro+rd*t);
+      if(d<.001){hit=true;break;}
+      t+=d*.9; if(t>8.)break;
+    }
+    if(hit){
+      vec3 p=ro+rd*t; vec2 e=vec2(.0015,0.);
+      vec3 n=normalize(vec3(map(p+e.xyy)-map(p-e.xyy),map(p+e.yxy)-map(p-e.yxy),map(p+e.yyx)-map(p-e.yyx)));
+      vec3 r=reflect(rd,n);
+      float fr=pow(1.-max(dot(-rd,n),0.),4.);
+      vec3 col=env(r)*(.86+.2*fr);
+      col=pow(clamp(col,0.,1.),vec3(.95));
+      outc=vec4(col,1.);
+    }
+  }
+  gl_FragColor=outc;
+}`;
+  function sh(type,src){
+    const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s);
+    return gl.getShaderParameter(s,gl.COMPILE_STATUS)?s:null;
+  }
+  const vs=sh(gl.VERTEX_SHADER,VS), fs=sh(gl.FRAGMENT_SHADER,FS);
+  if(!vs||!fs){ wrap.classList.add("fallback"); return; }
+  const pr=gl.createProgram(); gl.attachShader(pr,vs); gl.attachShader(pr,fs); gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){ wrap.classList.add("fallback"); return; }
+  gl.useProgram(pr);
+  const buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(pr,"p"); gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const uR=gl.getUniformLocation(pr,"uR"), uT=gl.getUniformLocation(pr,"uT"),
+        uM=gl.getUniformLocation(pr,"uM"), uMS=gl.getUniformLocation(pr,"uMS");
+
+  const m={x:0,y:0,tx:0,ty:0,s:0,ts:0};
+  let raf=null, visible=true, t0=performance.now();
+
+  function resize(){
+    const dpr=Math.min(window.devicePixelRatio||1, window.innerWidth<760?1.25:1.6);
+    const size=cv.clientWidth;
+    cv.width=Math.round(size*dpr); cv.height=Math.round(size*dpr);
+    gl.viewport(0,0,cv.width,cv.height);
+    if(reduce) draw(2);
+  }
+  function draw(t){
+    gl.uniform2f(uR,cv.width,cv.height);
+    gl.uniform1f(uT,t);
+    gl.uniform2f(uM,m.x,m.y);
+    gl.uniform1f(uMS,m.s);
+    gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }
+  function loop(now){
+    m.x+=(m.tx-m.x)*.07; m.y+=(m.ty-m.y)*.07; m.s+=(m.ts-m.s)*.05;
+    draw((now-t0)/1000);
+    raf=requestAnimationFrame(loop);
+  }
+  function start(){ if(!raf&&visible&&!reduce&&!document.hidden) raf=requestAnimationFrame(loop); }
+  function stop(){ if(raf){ cancelAnimationFrame(raf); raf=null; } }
+
+  window.addEventListener("pointermove",e=>{
+    const r=cv.getBoundingClientRect();
+    const x=(e.clientX-(r.left+r.width/2))/(r.width/2);
+    const y=-(e.clientY-(r.top+r.height/2))/(r.height/2);
+    m.tx=x; m.ty=y;
+    const d=Math.hypot(x,y);
+    m.ts=d<1.2?1:Math.max(0,1-(d-1.2)/1.3);
+    if(!reduce&&window.innerWidth>880){
+      const hr=hero.getBoundingClientRect();
+      const px=(e.clientX-hr.left)/hr.width-.5, py=(e.clientY-hr.top)/hr.height-.5;
+      heroText.style.transform="translate3d("+(px*-10).toFixed(1)+"px,"+(py*-7).toFixed(1)+"px,0)";
+    }
+  });
+  document.addEventListener("pointerleave",()=>{ m.ts=0; m.tx=0; m.ty=0; heroText.style.transform=""; });
+  window.addEventListener("resize",resize);
+  document.addEventListener("visibilitychange",()=>{ document.hidden?stop():start(); });
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(en=>{ visible=en[0].isIntersecting; visible?start():stop(); }).observe(hero);
+  }
+  resize();
+  start();
+})();
+</script>
+</body>
+</html>
