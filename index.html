@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- SeSoft landing page, v1.1 -->
+<!-- SeSoft landing page, v1.2 -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Selman Çamoğlu | Otomasyon ve entegrasyon</title>
-<meta name="description" content="CRM kurulumu, otomatik lead iletişimi, n8n otomasyonları, sesli AI asistan, dijital sözleşme ve şirket içi portallar.">
+<title>Selman Çamoğlu | Otomasyon, CRM ve entegrasyon</title>
+<meta name="description" content="Otomasyon, CRM ve tüm entegrasyonlarınız için buradayım. CRM kurulumu, otomatik lead iletişimi, n8n otomasyonları, sesli AI asistan, dijital sözleşme ve şirket içi portallar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
@@ -17,60 +17,70 @@
   --muted:#5E636E;
   --line:#D6D9DF;
   --chrome:linear-gradient(115deg,#fbfcfd 0%,#9aa0aa 22%,#f4f5f7 42%,#5f6571 62%,#e6e8ec 80%,#a7acb5 100%);
-  --maxw:1120px;
+  --maxw:1200px;
+  --gut:28px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html,body{margin:0}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
+  min-height:100svh;display:flex;flex-direction:column;
+  background:var(--bg);color:var(--ink);
   font-family:"Geist",system-ui,-apple-system,sans-serif;
-  font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(55% 60% at 74% 42%,#ffffff 0%,rgba(255,255,255,0) 70%);
 }
 a{color:inherit}
+button{font:inherit;color:inherit}
 ::selection{background:var(--ink);color:var(--bg)}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
 
-/* ---------- top bar ---------- */
-.top{
-  position:absolute;top:0;left:0;right:0;z-index:20;
-  display:flex;align-items:center;justify-content:space-between;
-  max-width:var(--maxw);margin:0 auto;padding:24px 28px;
+/* Masaüstünde tek ekran, scroll yok */
+@media (min-width:880px) and (min-height:620px){
+  body{height:100svh;overflow:hidden}
 }
-.mark{font-weight:600;font-size:15px;letter-spacing:-0.01em}
+
+.row{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+
+/* ---------- üst bar ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:22px;padding-bottom:10px;position:relative;z-index:5}
+.mark{font-weight:600;font-size:15px;letter-spacing:-0.01em;white-space:nowrap}
 .mark span{color:var(--muted);font-weight:400}
-.lang{display:flex;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px}
+.top-right{display:flex;align-items:center;gap:8px}
+.ico{
+  width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+  background:var(--paper);border:1px solid var(--line);text-decoration:none;
+  transition:border-color .2s,transform .2s;
+}
+.ico:hover{border-color:var(--ink);transform:translateY(-1px)}
+.ico svg{width:15px;height:15px}
+.lang{display:flex;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px;margin-left:6px}
 .lang button{
-  font:inherit;font-size:12px;font-weight:500;background:none;border:0;color:var(--muted);
-  cursor:pointer;padding:4px 11px;border-radius:999px;transition:color .2s,background .2s;
+  font-size:12px;font-weight:500;background:none;border:0;color:var(--muted);
+  cursor:pointer;padding:4px 10px;border-radius:999px;transition:color .2s,background .2s;
 }
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
-.hero::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(60% 55% at 72% 48%,#ffffff 0%,rgba(255,255,255,0) 70%);
+/* ---------- sahne ---------- */
+.stage{
+  flex:1;min-height:0;position:relative;
+  display:grid;grid-template-columns:1fr;align-items:center;
 }
-.hero .wrap{
-  position:relative;z-index:2;width:100%;
-  display:grid;grid-template-columns:1fr;gap:8px;align-items:center;
-  padding-top:96px;padding-bottom:64px;
-}
-@media(min-width:880px){.hero .wrap{grid-template-columns:1.05fr 1fr;gap:24px}}
-.hero-text{will-change:transform;order:2}
-@media(min-width:880px){.hero-text{order:1}}
+@media (min-width:880px){.stage{grid-template-columns:1.15fr .85fr;gap:24px}}
+.copy{position:relative;z-index:2;padding:28px 0;will-change:transform}
 h1{
-  font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:500;
-  line-height:1.02;letter-spacing:-0.045em;margin:0 0 24px;max-width:13ch;
+  font-weight:500;letter-spacing:-0.045em;line-height:1.03;margin:0 0 22px;max-width:18ch;text-wrap:balance;
+  font-size:clamp(2.1rem,min(5vw,8.2vh),4.3rem);
 }
-.lede{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--muted);max-width:44ch;margin:0 0 36px}
-.actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.detail{min-height:7.2em;max-width:50ch;margin:0 0 22px;font-size:clamp(.95rem,1.25vw,1.05rem);color:var(--muted)}
+.detail p{margin:0;transition:opacity .22s ease,transform .22s ease}
+.detail p.swap{opacity:0;transform:translateY(4px)}
+.detail .d-title{display:block;color:var(--ink);font-weight:500;margin-bottom:4px}
+.detail .d-hint{color:#8B909A}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
 .cta{
-  position:relative;display:inline-block;overflow:hidden;
-  background:var(--ink);color:var(--paper);text-decoration:none;
-  font-weight:500;font-size:15px;padding:15px 28px;border-radius:999px;
-  transition:transform .2s ease;
+  position:relative;overflow:hidden;border:0;cursor:pointer;
+  background:var(--ink);color:var(--paper);
+  font-weight:500;font-size:15px;padding:14px 26px;border-radius:999px;transition:transform .2s ease;
 }
 .cta::after{
   content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
@@ -79,228 +89,208 @@ h1{
 }
 .cta:hover{transform:translateY(-2px)}
 .cta:hover::after{left:130%}
-.hint{font-size:14px;color:var(--muted);max-width:30ch;line-height:1.45}
+.hint{font-size:13.5px;color:var(--muted);display:none}
+body.has-assistant .hint{display:inline}
 
-.orb-wrap{order:1;display:flex;justify-content:center}
-@media(min-width:880px){.orb-wrap{order:2}}
-#orb{display:block;width:min(78vw,560px);aspect-ratio:1/1;touch-action:pan-y}
+.orb-wrap{display:flex;align-items:center;justify-content:center;height:100%;min-height:0}
+#orb{display:block;height:min(100%,62vh,540px);width:auto;aspect-ratio:1/1;max-width:100%}
 .orb-wrap.fallback #orb{display:none}
 .orb-wrap.fallback::before{
-  content:"";display:block;width:min(62vw,420px);aspect-ratio:1/1;border-radius:50%;
+  content:"";display:block;height:min(52vh,420px);aspect-ratio:1/1;border-radius:50%;
   background:
     radial-gradient(circle at 34% 28%,#ffffff 0 8%,rgba(255,255,255,0) 22%),
     radial-gradient(circle at 60% 70%,#2a2d34 0,rgba(42,45,52,0) 45%),
     linear-gradient(170deg,#f7f8fa 0%,#b8bdc6 38%,#3b3f47 52%,#9ea4ad 70%,#eef0f3 100%);
-  box-shadow:0 40px 60px -30px rgba(22,24,29,.35);
+}
+@media (max-width:879px){
+  .orb-wrap{position:absolute;top:-10px;right:-18%;width:78vw;height:auto;opacity:.4;pointer-events:none;z-index:1}
+  #orb{height:auto;width:100%}
+  .copy{padding-top:36px;padding-bottom:20px}
+  .detail{min-height:8.4em}
+}
+@media (max-width:520px){
+  :root{--gut:18px}
+  .mark span{display:none}
+  .top-right{gap:6px}
+  .ico{width:32px;height:32px}
+  .lang{margin-left:2px}
+  .lang button{padding:4px 8px}
 }
 
-/* ---------- sections ---------- */
-section{padding:104px 0}
-h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:500;letter-spacing:-0.035em;line-height:1.1;margin:0 0 44px;max-width:18ch}
-.prose{font-size:1.05rem;color:var(--muted);max-width:58ch;margin:0 0 30px}
+/* ---------- hizmet bandı ---------- */
+.services{position:relative;z-index:2;padding-bottom:22px}
+body.has-assistant .services{padding-bottom:92px}
+.svc-label{font-size:13px;color:var(--muted);margin:0 0 10px}
+.grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+}
+@media (min-width:880px){.grid{grid-template-columns:repeat(4,1fr)}}
+.tile{
+  position:relative;text-align:left;cursor:pointer;background:transparent;
+  border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:clamp(12px,2.1vh,20px) 16px;font-size:clamp(.9rem,1.15vw,1rem);font-weight:500;letter-spacing:-0.01em;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  transition:background .25s ease;
+}
+.tile::before{
+  content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--chrome);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.4,0,.2,1);
+}
+.tile .dot{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);flex:none;transition:background .25s,border-color .25s}
+.tile:hover{background:rgba(255,255,255,.6)}
+.tile[aria-pressed="true"]{background:var(--paper)}
+.tile[aria-pressed="true"]::before{transform:scaleX(1)}
+.tile[aria-pressed="true"] .dot{background:var(--ink);border-color:var(--ink)}
 
-/* ---------- services ---------- */
-.svc{position:relative;border-top:1px solid var(--line)}
-.svc:last-of-type{border-bottom:1px solid var(--line)}
-.svc::before{
-  content:"";position:absolute;left:0;top:-1px;height:1px;width:0;
-  background:var(--chrome);transition:width .5s cubic-bezier(.4,0,.2,1);
+/* ---------- form paneli ---------- */
+dialog.drawer{
+  margin:0 0 0 auto;padding:0;border:0;height:100dvh;max-height:100dvh;
+  width:min(480px,100vw);max-width:100vw;background:var(--paper);color:var(--ink);
+  box-shadow:-30px 0 60px -30px rgba(22,24,29,.25);
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1),overlay .38s allow-discrete,display .38s allow-discrete;
 }
-.svc[data-open="true"]::before{width:100%}
-.svc-head{
-  width:100%;display:flex;align-items:center;gap:20px;text-align:left;
-  background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:24px 0;
-}
-.svc-title{
-  font-size:clamp(1.15rem,2.3vw,1.55rem);font-weight:500;letter-spacing:-0.025em;flex:1;
-  transition:transform .3s ease;
-}
-.svc-head:hover .svc-title{transform:translateX(6px)}
-.plus{
-  position:relative;width:34px;height:34px;flex:none;border-radius:50%;
-  border:1px solid var(--line);background:var(--paper);transition:transform .35s ease,background .35s ease;
-}
-.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink);transform:translate(-50%,-50%)}
-.plus::before{width:12px;height:1.5px}
-.plus::after{width:1.5px;height:12px;transition:opacity .3s ease}
-.svc[data-open="true"] .plus{transform:rotate(180deg);background:var(--chrome);border-color:transparent}
-.svc[data-open="true"] .plus::after{opacity:0}
-.svc-body{overflow:hidden;height:0;transition:height .4s cubic-bezier(.4,0,.2,1)}
-.svc-body p{color:var(--muted);max-width:60ch;margin:0 0 28px;font-size:1rem}
+dialog.drawer[open]{transform:none}
+@starting-style{dialog.drawer[open]{transform:translateX(100%)}}
+dialog.drawer::backdrop{background:rgba(22,24,29,0);backdrop-filter:blur(0);transition:all .38s allow-discrete}
+dialog.drawer[open]::backdrop{background:rgba(22,24,29,.16);backdrop-filter:blur(6px)}
+@starting-style{dialog.drawer[open]::backdrop{background:rgba(22,24,29,0);backdrop-filter:blur(0)}}
+.drawer-in{height:100%;overflow-y:auto;padding:26px 28px 34px;display:flex;flex-direction:column}
+.drawer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.drawer-head h2{font-size:1.6rem;font-weight:500;letter-spacing:-0.035em;line-height:1.1;margin:0}
+.close{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;flex:none;display:grid;place-items:center}
+.close:hover{border-color:var(--ink)}
+.close svg{width:14px;height:14px}
 
-/* ---------- contact ---------- */
-.form-shell{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;padding:8px 4px}
-.form-shell iframe{display:block;width:100%;border:0;min-height:620px}
-.direct{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.direct a{
-  display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-size:14px;
-  background:var(--paper);border:1px solid var(--line);padding:11px 18px;border-radius:999px;
-  transition:border-color .2s,transform .2s;
+form{display:flex;flex-direction:column;gap:14px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:460px){.f-row{grid-template-columns:1fr}}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted);min-width:0}
+label.f .in{width:100%}
+label.f .opt{color:#9A9FA8}
+input.in,textarea.in{
+  font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
+  border:1px solid transparent;border-radius:10px;padding:11px 13px;outline:none;
+  transition:border-color .2s,background .2s;
 }
-.direct a:hover{border-color:var(--ink);transform:translateY(-1px)}
-.direct svg{width:15px;height:15px;flex:none}
-
-footer{border-top:1px solid var(--line);padding:30px 0 110px;font-size:13px;color:var(--muted)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+input.in:focus,textarea.in:focus{background:var(--paper);border-color:var(--ink)}
+input.in:user-invalid,textarea.in:user-invalid{border-color:#B4232C;background:#FFF7F7}
+textarea.in{min-height:96px;resize:vertical}
+fieldset{border:0;margin:0;padding:0}
+legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{
+  display:inline-block;cursor:pointer;font-size:13.5px;padding:7px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--paper);transition:all .2s;
+}
+.chip input:checked + span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);cursor:pointer}
+.consent input{margin-top:3px;accent-color:var(--ink);width:16px;height:16px;flex:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.send{align-self:flex-start;margin-top:4px}
+.send[disabled]{opacity:.55;cursor:progress}
+.f-error{font-size:13.5px;color:#B4232C;margin:0;display:none}
+.f-error.show{display:block}
+.done{display:none;flex:1;flex-direction:column;justify-content:center;gap:12px}
+.done.show{display:flex}
+.done .check{width:52px;height:52px;border-radius:50%;background:var(--chrome);display:grid;place-items:center}
+.done .check svg{width:22px;height:22px}
+.done h3{font-size:1.4rem;font-weight:500;letter-spacing:-0.03em;margin:6px 0 0}
+.done p{color:var(--muted);margin:0;max-width:34ch}
 
 @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
   *{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
 </style>
 </head>
 <body>
 
-<div class="top">
+<header class="row top">
   <div class="mark">Selman Çamoğlu <span>/ SeSoft</span></div>
-  <div class="lang" role="group" aria-label="Dil / Language">
-    <button data-lang="tr" aria-pressed="true">TR</button>
-    <button data-lang="en" aria-pressed="false">EN</button>
-  </div>
-</div>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-text">
-      <h1 data-tr="Dağınık süreçleri tek bir akışa bağlıyorum."
-          data-en="I connect scattered processes into a single flow.">Dağınık süreçleri tek bir akışa bağlıyorum.</h1>
-      <p class="lede"
-         data-tr="CRM'den mesajlaşmaya, sözleşmeden iç portala. Elle yaptığınız her tekrarlı adım, kendi kendine çalışan bir sisteme dönüşür."
-         data-en="From CRM to messaging, from contracts to internal portals. Every repetitive step you do by hand turns into a system that runs itself.">CRM'den mesajlaşmaya, sözleşmeden iç portala. Elle yaptığınız her tekrarlı adım, kendi kendine çalışan bir sisteme dönüşür.</p>
-      <div class="actions">
-        <a class="cta" href="#iletisim" data-tr="Projenizi anlatın" data-en="Tell me about your project">Projenizi anlatın</a>
-        <span class="hint" data-tr="Ya da sağ alttaki asistana sorun, sesli veya yazılı." data-en="Or ask the assistant in the corner, by voice or text.">Ya da sağ alttaki asistana sorun, sesli veya yazılı.</span>
-      </div>
+  <div class="top-right">
+    <a class="ico" href="https://www.linkedin.com/in/camoglu/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4V9Z"/></svg>
+    </a>
+    <a class="ico" id="wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-2 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.2-1.5-1.2-2.9 0-1.4.7-2 1-2.3.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
+    </a>
+    <a class="ico" id="mail" href="#" aria-label="E-posta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+    </a>
+    <div class="lang" role="group" aria-label="Dil / Language">
+      <button data-lang="tr" aria-pressed="true">TR</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
     </div>
-    <div class="orb-wrap"><canvas id="orb" aria-hidden="true"></canvas></div>
   </div>
 </header>
 
-<main>
-<section id="hizmetler">
-  <div class="wrap">
-    <h2 data-tr="Size şu konularda yardımcı olabilirim" data-en="Here is where I can help">Size şu konularda yardımcı olabilirim</h2>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="CRM kurulumu ve yönetimi" data-en="CRM setup and management">CRM kurulumu ve yönetimi</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="CRM'i sıfırdan kuruyor ya da mevcut yapınızı düzenliyorum. Aşamalar, alanlar, otomatik lead ataması ve takip hatırlatmaları işinize göre tasarlanıyor, ekibiniz de kullanım konusunda eğitiliyor."
-        data-en="I set up your CRM from scratch or fix the one you have. Stages, fields, automatic lead assignment and follow up reminders are designed around your work, and your team is trained to use it.">CRM'i sıfırdan kuruyor ya da mevcut yapınızı düzenliyorum. Aşamalar, alanlar, otomatik lead ataması ve takip hatırlatmaları işinize göre tasarlanıyor, ekibiniz de kullanım konusunda eğitiliyor.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Otomatik lead iletişimi" data-en="Automated lead follow up">Otomatik lead iletişimi</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="CRM'e yeni bir aday düştüğü anda ona otomatik mesaj gider, ardından belirlenen aralıklarla e-posta zinciri devam eder. Kimse unutulmaz, ilk temas dakikalar içinde olur."
-        data-en="The moment a new lead lands in your CRM they get an automatic message, followed by an email sequence at set intervals. Nobody gets forgotten and first contact happens within minutes.">CRM'e yeni bir aday düştüğü anda ona otomatik mesaj gider, ardından belirlenen aralıklarla e-posta zinciri devam eder. Kimse unutulmaz, ilk temas dakikalar içinde olur.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Pazarlama kampanyaları" data-en="Marketing campaigns">Pazarlama kampanyaları</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="Setrow gibi platformlar üzerinden aylık e-posta, WhatsApp ve SMS kampanyalarının kurulumu: liste segmentasyonu, şablonlar, zamanlama ve sonuç raporları."
-        data-en="Monthly email, WhatsApp and SMS campaigns on platforms like Setrow: list segmentation, templates, scheduling and results reporting.">Setrow gibi platformlar üzerinden aylık e-posta, WhatsApp ve SMS kampanyalarının kurulumu: liste segmentasyonu, şablonlar, zamanlama ve sonuç raporları.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Otomasyon ve entegrasyon" data-en="Automation and integration">Otomasyon ve entegrasyon</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="n8n üzerinde kullandığınız yazılımları birbirine bağlıyorum. Form dolduğunda kayıt açılması, dosyanın arşivlenmesi, ilgili kişiye bildirim gitmesi gibi elle yapılan tekrarlı işler ortadan kalkıyor."
-        data-en="I connect the software you already use on n8n. Repetitive manual work like creating records from forms, archiving files and notifying the right person simply goes away.">n8n üzerinde kullandığınız yazılımları birbirine bağlıyorum. Form dolduğunda kayıt açılması, dosyanın arşivlenmesi, ilgili kişiye bildirim gitmesi gibi elle yapılan tekrarlı işler ortadan kalkıyor.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Sesli AI asistan" data-en="Voice AI assistant">Sesli AI asistan</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="Vapi veya Retell gibi sistemlerle web sitenize sesli ve yazılı konuşabilen bir yapay zeka asistanı kuruyorum. Ziyaretçinin sorularını yanıtlıyor, iletişim bilgilerini alıp doğrudan CRM'inize kaydediyor. Sağ alttaki asistan bunun canlı örneği."
-        data-en="I build AI assistants on platforms like Vapi or Retell that talk to your website visitors by voice or text. They answer questions, collect contact details and save them straight into your CRM. The assistant in the corner is a live example.">Vapi veya Retell gibi sistemlerle web sitenize sesli ve yazılı konuşabilen bir yapay zeka asistanı kuruyorum. Ziyaretçinin sorularını yanıtlıyor, iletişim bilgilerini alıp doğrudan CRM'inize kaydediyor. Sağ alttaki asistan bunun canlı örneği.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Dijital sözleşme sistemi" data-en="Digital contract system">Dijital sözleşme sistemi</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="Müşteriniz sözleşmeyi online okuyup onaylıyor. Onay anı, okuma bilgisiyle birlikte kayıt altına alınıyor, belge otomatik olarak arşivleniyor. Kağıt, tarama ve kargo derdi bitiyor."
-        data-en="Your client reads and accepts the contract online. The acceptance is recorded together with reading data and the document is archived automatically. No more paper, scanning or couriers.">Müşteriniz sözleşmeyi online okuyup onaylıyor. Onay anı, okuma bilgisiyle birlikte kayıt altına alınıyor, belge otomatik olarak arşivleniyor. Kağıt, tarama ve kargo derdi bitiyor.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Teklif portalı" data-en="Quotation portal">Teklif portalı</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="Fiyatların tek yerden yönetildiği, ekibin birkaç tıklamayla tutarlı teklif çıkarabildiği bir portalın kurulumu ve yönetimi."
-        data-en="Setup and management of a portal where prices live in one place and your team produces consistent quotes in a few clicks.">Fiyatların tek yerden yönetildiği, ekibin birkaç tıklamayla tutarlı teklif çıkarabildiği bir portalın kurulumu ve yönetimi.</p></div>
-    </div>
-
-    <div class="svc" data-open="false">
-      <button class="svc-head" aria-expanded="false">
-        <span class="svc-title" data-tr="Şirket içi portal" data-en="Internal company portal">Şirket içi portal</span>
-        <span class="plus" aria-hidden="true"></span>
-      </button>
-      <div class="svc-body"><p
-        data-tr="Ekibinize özel bir iç portal: izin talepleri ve onayları, personel süreçleri ve şirket dosyalarınıza soru sorabildiğiniz yapay zeka destekli bir arayüz."
-        data-en="A portal built for your team: leave requests and approvals, staff processes, and an AI powered interface that lets you ask questions of your company files.">Ekibinize özel bir iç portal: izin talepleri ve onayları, personel süreçleri ve şirket dosyalarınıza soru sorabildiğiniz yapay zeka destekli bir arayüz.</p></div>
+<main class="row stage">
+  <div class="copy">
+    <h1 data-tr="Otomasyon, CRM ve tüm entegrasyonlarınız için buradayım."
+        data-en="Automation, CRM and all your integrations, in one place.">Otomasyon, CRM ve tüm entegrasyonlarınız için buradayım.</h1>
+    <div class="detail" aria-live="polite"><p id="detail"></p></div>
+    <div class="actions">
+      <button class="cta" id="openForm" type="button" data-tr="İletişime geç" data-en="Get in touch">İletişime geç</button>
+      <span class="hint" data-tr="ya da sağ alttaki asistana sorun" data-en="or ask the assistant in the corner">ya da sağ alttaki asistana sorun</span>
     </div>
   </div>
-</section>
-
-<section id="iletisim">
-  <div class="wrap">
-    <h2 data-tr="Nasıl bir süreci otomatikleştirmek istiyorsunuz?" data-en="Which process would you like to automate?">Nasıl bir süreci otomatikleştirmek istiyorsunuz?</h2>
-    <p class="prose"
-       data-tr="Formu doldurun, iki iş günü içinde dönüş yapayım. Hemen konuşmak isterseniz asistana sorabilir ya da WhatsApp'tan yazabilirsiniz."
-       data-en="Fill in the form and I will get back to you within two business days. If you want to talk right away, ask the assistant or message me on WhatsApp.">Formu doldurun, iki iş günü içinde dönüş yapayım. Hemen konuşmak isterseniz asistana sorabilir ya da WhatsApp'tan yazabilirsiniz.</p>
-
-    <div class="form-shell">
-      <iframe data-tally-src="https://tally.so/embed/Y56bA5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="lazy" width="100%" height="620" frameborder="0" marginheight="0" marginwidth="0" title="İletişim formu"></iframe>
-    </div>
-
-    <div class="direct">
-      <a id="wa" href="#" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.200 1.3-2 1.4-.5.1-1.2.2-3.5-.7-2.9-1.2-4.8-4.2-5-4.4-.1-.2-1.2-1.5-1.2-2.9 0-1.4.7-2 1-2.3.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
-        <span>WhatsApp</span>
-      </a>
-      <a id="mail" href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
-        <span data-tr="E-posta" data-en="Email">E-posta</span>
-      </a>
-      <a href="https://www.linkedin.com/in/camoglu/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.830-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4V9Z"/></svg>
-        <span>LinkedIn</span>
-      </a>
-    </div>
-  </div>
-</section>
+  <div class="orb-wrap"><canvas id="orb" aria-hidden="true"></canvas></div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>© <span id="yr"></span> Selman Çamoğlu</span>
-    <span data-tr="İstanbul, Türkiye" data-en="Istanbul, Türkiye">İstanbul, Türkiye</span>
-  </div>
-</footer>
+<section class="row services" aria-label="Hizmetler">
+  <p class="svc-label" data-tr="Size şu konularda yardımcı olabilirim" data-en="Here is where I can help">Size şu konularda yardımcı olabilirim</p>
+  <div class="grid" id="grid"></div>
+</section>
 
-<script async src="https://tally.so/widgets/embed.js"></script>
+<dialog class="drawer" id="drawer" aria-labelledby="formTitle">
+  <div class="drawer-in">
+    <div class="drawer-head">
+      <h2 id="formTitle" data-tr="Projenizi kısaca anlatın" data-en="Tell me briefly about your project">Projenizi kısaca anlatın</h2>
+      <button class="close" id="closeForm" type="button" aria-label="Kapat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+
+    <form id="leadForm" novalidate>
+      <div class="f-row">
+        <label class="f"><span data-tr="Ad soyad" data-en="Full name">Ad soyad</span>
+          <input class="in" name="name" required autocomplete="name"></label>
+        <label class="f"><span><span data-tr="Şirket" data-en="Company">Şirket</span> <span class="opt" data-tr="(isteğe bağlı)" data-en="(optional)">(isteğe bağlı)</span></span>
+          <input class="in" name="company" autocomplete="organization"></label>
+      </div>
+      <div class="f-row">
+        <label class="f"><span data-tr="Telefon" data-en="Phone">Telefon</span>
+          <input class="in" name="phone" type="tel" required autocomplete="tel" pattern="[0-9+()\s\-]{7,}" placeholder="+90 5xx xxx xx xx"></label>
+        <label class="f"><span><span data-tr="E-posta" data-en="Email">E-posta</span> <span class="opt" data-tr="(isteğe bağlı)" data-en="(optional)">(isteğe bağlı)</span></span>
+          <input class="in" name="email" type="email" autocomplete="email"></label>
+      </div>
+      <fieldset>
+        <legend data-tr="Hangi konuda?" data-en="What is it about?">Hangi konuda?</legend>
+        <div class="chips" id="chips"></div>
+      </fieldset>
+      <label class="f"><span data-tr="Kısaca ihtiyacınız" data-en="Your need in a few words">Kısaca ihtiyacınız</span>
+        <textarea class="in" name="message" rows="4"></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label class="consent">
+        <input type="checkbox" name="consent" required>
+        <span data-tr="Paylaştığım bilgilerin yalnızca bana dönüş yapmak amacıyla kullanılmasını kabul ediyorum."
+              data-en="I agree that the details I share are used only to get back to me.">Paylaştığım bilgilerin yalnızca bana dönüş yapmak amacıyla kullanılmasını kabul ediyorum.</span>
+      </label>
+      <p class="f-error" id="fError"></p>
+      <button class="cta send" id="sendBtn" type="submit" data-tr="Gönder" data-en="Send">Gönder</button>
+    </form>
+
+    <div class="done" id="done" role="status">
+      <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
+      <h3 data-tr="Mesajınız ulaştı" data-en="Message received">Mesajınız ulaştı</h3>
+      <p data-tr="İki iş günü içinde size dönüş yapacağım." data-en="I will get back to you within two business days.">İki iş günü içinde size dönüş yapacağım.</p>
+    </div>
+  </div>
+</dialog>
+
 <script>
 /* ============================================================
    AYARLAR: sadece bu bloğu kendine göre değiştir
@@ -309,6 +299,7 @@ const CONFIG = {
   email: "merhaba@sesoft.com.tr",          // kendi e-postan
   whatsapp: "905000000000",                // 90 ile başlayan numaran, boşluksuz
   waText: "Merhaba, otomasyon konusunda görüşmek istiyorum.",
+  webhook: "N8N_WEBHOOK_URL",              // n8n Webhook node > Production URL
   vapi: {
     publicKey: "VAPI_PUBLIC_KEY",          // Vapi panel > API Keys > Public Key
     assistantId: "VAPI_ASSISTANT_ID",      // Vapi panel > Assistants > ID
@@ -316,108 +307,235 @@ const CONFIG = {
   }
 };
 
-document.getElementById("yr").textContent = new Date().getFullYear();
+/* ---------- hizmetler ---------- */
+const SERVICES = [
+  { id:"crm", tr:"CRM kurulumu ve yönetimi", en:"CRM setup and management",
+    dtr:"CRM'i sıfırdan kuruyor ya da mevcut yapınızı düzenliyorum. Aşamalar, otomatik lead ataması ve takip hatırlatmaları işinize göre tasarlanıyor, ekibiniz de kullanım konusunda eğitiliyor.",
+    den:"I set up your CRM from scratch or fix the one you have. Stages, automatic lead assignment and follow up reminders are designed around your work, and your team is trained to use it." },
+  { id:"lead", tr:"Otomatik lead iletişimi", en:"Automated lead follow up",
+    dtr:"CRM'e yeni bir aday düştüğü anda ona otomatik mesaj gidiyor, ardından e-posta zinciri devam ediyor. Kimse unutulmuyor, ilk temas dakikalar içinde oluyor.",
+    den:"The moment a new lead lands in your CRM they get an automatic message, followed by an email sequence. Nobody gets forgotten and first contact happens within minutes." },
+  { id:"campaign", tr:"Pazarlama kampanyaları", en:"Marketing campaigns",
+    dtr:"Setrow gibi platformlar üzerinden aylık e-posta, WhatsApp ve SMS kampanyaları: liste segmentasyonu, şablonlar, zamanlama ve sonuç raporları.",
+    den:"Monthly email, WhatsApp and SMS campaigns on platforms like Setrow: segmentation, templates, scheduling and results reporting." },
+  { id:"automation", tr:"Otomasyon ve entegrasyon", en:"Automation and integration",
+    dtr:"n8n ile kullandığınız yazılımları birbirine bağlıyorum. Kayıt açma, dosya arşivleme, bildirim gönderme gibi elle yapılan tekrarlı işler ortadan kalkıyor.",
+    den:"I connect the software you already use with n8n. Repetitive manual work like creating records, archiving files and sending notifications simply goes away." },
+  { id:"voice", tr:"Sesli AI asistan", en:"Voice AI assistant",
+    dtr:"Vapi veya Retell ile web sitenize sesli ve yazılı konuşan bir asistan kuruyorum. Soruları yanıtlıyor, iletişim bilgilerini alıp doğrudan CRM'inize kaydediyor.",
+    den:"I build assistants on Vapi or Retell that talk to your visitors by voice or text. They answer questions, collect contact details and save them straight into your CRM." },
+  { id:"contract", tr:"Dijital sözleşme sistemi", en:"Digital contract system",
+    dtr:"Müşteriniz sözleşmeyi online okuyup onaylıyor. Onay, okuma bilgisiyle birlikte kayıt altına alınıyor ve belge otomatik arşivleniyor. Kağıt ve kargo derdi bitiyor.",
+    den:"Your client reads and accepts the contract online. The acceptance is recorded with reading data and the document is archived automatically. No more paper or couriers." },
+  { id:"quote", tr:"Teklif portalı", en:"Quotation portal",
+    dtr:"Fiyatların tek yerden yönetildiği, ekibinizin birkaç tıklamayla tutarlı teklif çıkarabildiği bir portalın kurulumu ve yönetimi.",
+    den:"Setup and management of a portal where prices live in one place and your team produces consistent quotes in a few clicks." },
+  { id:"portal", tr:"Şirket içi portal", en:"Internal company portal",
+    dtr:"Ekibinize özel bir iç portal: izin talepleri ve onayları, personel süreçleri ve şirket dosyalarınıza soru sorabildiğiniz yapay zeka destekli bir arayüz.",
+    den:"A portal built for your team: leave requests and approvals, staff processes, and an AI interface that answers questions from your company files." }
+];
+const HINT = {
+  tr:"Detayını görmek için aşağıdan bir başlık seçin.",
+  en:"Pick a topic below to see the details."
+};
+
+let lang = "tr";
+let active = null;
+const grid = document.getElementById("grid");
+const chips = document.getElementById("chips");
+const detail = document.getElementById("detail");
+
+SERVICES.forEach(s=>{
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "tile"; b.dataset.id = s.id;
+  b.setAttribute("aria-pressed","false");
+  b.innerHTML = '<span class="t"></span><span class="dot" aria-hidden="true"></span>';
+  b.addEventListener("click",()=>select(active === s.id ? null : s.id));
+  grid.appendChild(b);
+
+  const c = document.createElement("label");
+  c.className = "chip";
+  c.innerHTML = '<input type="checkbox" name="services" value="'+s.id+'"><span></span>';
+  chips.appendChild(c);
+});
+
+function renderDetail(){
+  const s = SERVICES.find(x=>x.id === active);
+  detail.innerHTML = s
+    ? '<span class="d-title"></span><span class="d-body"></span>'
+    : '<span class="d-hint"></span>';
+  if(s){
+    detail.querySelector(".d-title").textContent = s[lang];
+    detail.querySelector(".d-body").textContent = s["d"+lang];
+  } else {
+    detail.querySelector(".d-hint").textContent = HINT[lang];
+  }
+}
+function select(id){
+  active = id;
+  grid.querySelectorAll(".tile").forEach(t=>t.setAttribute("aria-pressed", String(t.dataset.id === id)));
+  detail.classList.add("swap");
+  setTimeout(()=>{ renderDetail(); detail.classList.remove("swap"); }, 170);
+}
+function renderServiceLabels(){
+  grid.querySelectorAll(".tile").forEach(t=>{
+    t.querySelector(".t").textContent = SERVICES.find(s=>s.id === t.dataset.id)[lang];
+  });
+  chips.querySelectorAll(".chip").forEach(c=>{
+    c.querySelector("span").textContent = SERVICES.find(s=>s.id === c.querySelector("input").value)[lang];
+  });
+}
+
+/* ---------- iletişim linkleri ---------- */
 document.getElementById("mail").href = "mailto:" + CONFIG.email;
 document.getElementById("wa").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.waText);
 
-/* ---------- Vapi asistan ---------- */
-const VAPI_TEXT = {
-  tr: {
-    label: "Selman'ın asistanı",
-    start: "Sesli konuş",
-    end: "Bitir",
-    chat: "Merhaba! Hangi süreci otomatikleştirmek istediğinizi anlatın, sorularınızı yanıtlayayım.",
-    voice: "Sesli konuşmak için başlatın.",
-    terms: "Bu görüşme kaydedilir. Paylaştığınız iletişim bilgileri yalnızca size dönüş yapmak için kullanılır. Devam ederek bunu kabul etmiş olursunuz."
-  },
-  en: {
-    label: "Selman's assistant",
-    start: "Talk by voice",
-    end: "End",
-    chat: "Hi! Tell me which process you would like to automate and I will answer your questions.",
-    voice: "Start to talk by voice.",
-    terms: "This conversation is recorded. Contact details you share are only used to get back to you. By continuing you agree to this."
-  }
-};
-const vapiReady = !CONFIG.vapi.publicKey.startsWith("VAPI_") && !CONFIG.vapi.assistantId.startsWith("VAPI_");
-function mountVapi(lang){
-  if(!vapiReady) return;
-  const old = document.querySelector("vapi-widget");
-  if(old) old.remove();
-  const t = VAPI_TEXT[lang] || VAPI_TEXT.tr;
-  const w = document.createElement("vapi-widget");
-  const attrs = {
-    "public-key": CONFIG.vapi.publicKey,
-    "assistant-id": CONFIG.vapi.assistantId,
-    "mode": CONFIG.vapi.mode,
-    "theme": "light",
-    "position": "bottom-right",
-    "size": "full",
-    "radius": "large",
-    "base-color": "#FFFFFF",
-    "accent-color": "#16181D",
-    "button-base-color": "#16181D",
-    "button-accent-color": "#FFFFFF",
-    "main-label": t.label,
-    "start-button-text": t.start,
-    "end-button-text": t.end,
-    "empty-chat-message": t.chat,
-    "empty-voice-message": t.voice,
-    "require-consent": "true",
-    "terms-content": t.terms,
-    "local-storage-key": "sesoft_widget_consent"
-  };
-  for(const k in attrs) w.setAttribute(k, attrs[k]);
-  document.body.appendChild(w);
-}
-if(vapiReady){
-  const s = document.createElement("script");
-  s.src = "https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js";
-  s.async = true;
-  s.onload = () => mountVapi(document.documentElement.lang);
-  document.body.appendChild(s);
-}
-
 /* ---------- dil ---------- */
 const langBtns = document.querySelectorAll(".lang button");
-function refreshOpenHeights(){
-  document.querySelectorAll('.svc[data-open="true"] .svc-body').forEach(b=>{
-    b.style.height = b.firstElementChild.offsetHeight + "px";
-  });
-}
 function setLang(l){
-  if(document.documentElement.lang === l) return;
+  lang = l;
   document.documentElement.lang = l;
   document.querySelectorAll("[data-tr]").forEach(el=>{
     const v = el.getAttribute("data-" + l);
     if(v !== null) el.textContent = v;
   });
   langBtns.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
-  refreshOpenHeights();
+  renderServiceLabels();
+  renderDetail();
   if(customElements.get("vapi-widget")) mountVapi(l);
 }
-langBtns.forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+langBtns.forEach(b=>b.addEventListener("click",()=>{ if(b.dataset.lang !== lang) setLang(b.dataset.lang); }));
 
-/* ---------- açılır hizmetler ---------- */
-document.querySelectorAll(".svc").forEach(svc=>{
-  const btn = svc.querySelector(".svc-head");
-  const body = svc.querySelector(".svc-body");
-  btn.addEventListener("click",()=>{
-    const open = svc.dataset.open === "true";
-    svc.dataset.open = String(!open);
-    btn.setAttribute("aria-expanded", String(!open));
-    body.style.height = open ? "0px" : body.firstElementChild.offsetHeight + "px";
-  });
+/* ---------- form paneli ---------- */
+const drawer = document.getElementById("drawer");
+const form = document.getElementById("leadForm");
+const done = document.getElementById("done");
+const fError = document.getElementById("fError");
+const sendBtn = document.getElementById("sendBtn");
+const MSG = {
+  tr:{ sending:"Gönderiliyor...", fail:"Mesaj gönderilemedi. Lütfen tekrar deneyin ya da WhatsApp'tan yazın.", invalid:"Lütfen ad, telefon ve onay kutusunu doldurun." },
+  en:{ sending:"Sending...", fail:"The message could not be sent. Please try again or message me on WhatsApp.", invalid:"Please fill in your name, phone and the consent box." }
+};
+
+document.getElementById("openForm").addEventListener("click",()=>{
+  if(active){
+    const box = chips.querySelector('input[value="'+active+'"]');
+    if(box) box.checked = true;
+  }
+  drawer.showModal();
 });
-window.addEventListener("resize", refreshOpenHeights);
+document.getElementById("closeForm").addEventListener("click",()=>drawer.close());
+drawer.addEventListener("click",e=>{ if(e.target === drawer) drawer.close(); });
+
+form.addEventListener("submit", async e=>{
+  e.preventDefault();
+  fError.classList.remove("show");
+  if(!form.checkValidity()){
+    form.querySelectorAll(".in").forEach(i=>i.dispatchEvent(new Event("blur")));
+    fError.textContent = MSG[lang].invalid; fError.classList.add("show");
+    form.reportValidity();
+    return;
+  }
+  const fd = new FormData(form);
+  if(fd.get("website")){ showDone(); return; }   // bot tuzağı
+
+  const picked = fd.getAll("services").map(id=>SERVICES.find(s=>s.id === id).tr);
+  const payload = {
+    source: "website-form",
+    name: fd.get("name").trim(),
+    company: (fd.get("company") || "").trim(),
+    phone: fd.get("phone").trim(),
+    email: (fd.get("email") || "").trim(),
+    services: picked,
+    message: (fd.get("message") || "").trim(),
+    consent: true,
+    lang: lang,
+    page: location.href,
+    submittedAt: new Date().toISOString()
+  };
+
+  if(CONFIG.webhook.startsWith("N8N_")){
+    // Webhook girilmediyse e-posta uygulamasını açar
+    const body = "Ad: "+payload.name+"\nŞirket: "+payload.company+"\nTelefon: "+payload.phone+"\nE-posta: "+payload.email+
+                 "\nKonular: "+picked.join(", ")+"\n\n"+payload.message;
+    location.href = "mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Web sitesi talebi: "+payload.name)+"&body="+encodeURIComponent(body);
+    return;
+  }
+
+  const label = sendBtn.textContent;
+  sendBtn.disabled = true; sendBtn.textContent = MSG[lang].sending;
+  try{
+    const res = await fetch(CONFIG.webhook,{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    showDone();
+  }catch(err){
+    fError.textContent = MSG[lang].fail; fError.classList.add("show");
+  }finally{
+    sendBtn.disabled = false; sendBtn.textContent = label;
+  }
+});
+function showDone(){
+  form.style.display = "none";
+  done.classList.add("show");
+  form.reset();
+}
+drawer.addEventListener("close",()=>{
+  if(done.classList.contains("show")){
+    setTimeout(()=>{ done.classList.remove("show"); form.style.display = ""; }, 400);
+  }
+});
+
+/* ---------- Vapi asistan ---------- */
+const VAPI_TEXT = {
+  tr:{ label:"Selman'ın asistanı", start:"Sesli konuş", end:"Bitir",
+       chat:"Merhaba! Hangi süreci otomatikleştirmek istediğinizi anlatın, sorularınızı yanıtlayayım.",
+       voice:"Sesli konuşmak için başlatın.",
+       terms:"Bu görüşme kaydedilir. Paylaştığınız iletişim bilgileri yalnızca size dönüş yapmak için kullanılır. Devam ederek bunu kabul etmiş olursunuz." },
+  en:{ label:"Selman's assistant", start:"Talk by voice", end:"End",
+       chat:"Hi! Tell me which process you would like to automate and I will answer your questions.",
+       voice:"Start to talk by voice.",
+       terms:"This conversation is recorded. Contact details you share are only used to get back to you. By continuing you agree to this." }
+};
+const vapiReady = !CONFIG.vapi.publicKey.startsWith("VAPI_") && !CONFIG.vapi.assistantId.startsWith("VAPI_");
+function mountVapi(l){
+  if(!vapiReady) return;
+  const old = document.querySelector("vapi-widget");
+  if(old) old.remove();
+  const t = VAPI_TEXT[l] || VAPI_TEXT.tr;
+  const w = document.createElement("vapi-widget");
+  const attrs = {
+    "public-key":CONFIG.vapi.publicKey, "assistant-id":CONFIG.vapi.assistantId, "mode":CONFIG.vapi.mode,
+    "theme":"light", "position":"bottom-right", "size":"full", "radius":"large",
+    "base-color":"#FFFFFF", "accent-color":"#16181D", "button-base-color":"#16181D", "button-accent-color":"#FFFFFF",
+    "main-label":t.label, "start-button-text":t.start, "end-button-text":t.end,
+    "empty-chat-message":t.chat, "empty-voice-message":t.voice,
+    "require-consent":"true", "terms-content":t.terms, "local-storage-key":"sesoft_widget_consent"
+  };
+  for(const k in attrs) w.setAttribute(k, attrs[k]);
+  document.body.appendChild(w);
+}
+if(vapiReady){
+  document.body.classList.add("has-assistant");
+  const s = document.createElement("script");
+  s.src = "https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js";
+  s.async = true;
+  s.onload = ()=>mountVapi(lang);
+  document.body.appendChild(s);
+}
+
+renderServiceLabels();
+renderDetail();
 
 /* ---------- sıvı krom (WebGL) ---------- */
 (function(){
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const cv = document.getElementById("orb");
   const wrap = cv.parentElement;
-  const hero = document.querySelector(".hero");
-  const heroText = document.querySelector(".hero-text");
+  const copy = document.querySelector(".copy");
   const gl = cv.getContext("webgl",{alpha:true,premultipliedAlpha:true,antialias:false});
   if(!gl){ wrap.classList.add("fallback"); return; }
 
@@ -496,11 +614,11 @@ void main(){
         uM=gl.getUniformLocation(pr,"uM"), uMS=gl.getUniformLocation(pr,"uMS");
 
   const m={x:0,y:0,tx:0,ty:0,s:0,ts:0};
-  let raf=null, visible=true, t0=performance.now();
+  let raf=null, t0=performance.now();
 
   function resize(){
     const dpr=Math.min(window.devicePixelRatio||1, window.innerWidth<760?1.25:1.6);
-    const size=cv.clientWidth;
+    const size=Math.max(cv.clientWidth, cv.clientHeight, 1);
     cv.width=Math.round(size*dpr); cv.height=Math.round(size*dpr);
     gl.viewport(0,0,cv.width,cv.height);
     if(reduce) draw(2);
@@ -518,7 +636,7 @@ void main(){
     draw((now-t0)/1000);
     raf=requestAnimationFrame(loop);
   }
-  function start(){ if(!raf&&visible&&!reduce&&!document.hidden) raf=requestAnimationFrame(loop); }
+  function start(){ if(!raf&&!reduce&&!document.hidden) raf=requestAnimationFrame(loop); }
   function stop(){ if(raf){ cancelAnimationFrame(raf); raf=null; } }
 
   window.addEventListener("pointermove",e=>{
@@ -529,17 +647,14 @@ void main(){
     const d=Math.hypot(x,y);
     m.ts=d<1.2?1:Math.max(0,1-(d-1.2)/1.3);
     if(!reduce&&window.innerWidth>880){
-      const hr=hero.getBoundingClientRect();
-      const px=(e.clientX-hr.left)/hr.width-.5, py=(e.clientY-hr.top)/hr.height-.5;
-      heroText.style.transform="translate3d("+(px*-10).toFixed(1)+"px,"+(py*-7).toFixed(1)+"px,0)";
+      const px=e.clientX/window.innerWidth-.5, py=e.clientY/window.innerHeight-.5;
+      copy.style.transform="translate3d("+(px*-8).toFixed(1)+"px,"+(py*-6).toFixed(1)+"px,0)";
     }
   });
-  document.addEventListener("pointerleave",()=>{ m.ts=0; m.tx=0; m.ty=0; heroText.style.transform=""; });
-  window.addEventListener("resize",resize);
+  document.addEventListener("pointerleave",()=>{ m.ts=0; m.tx=0; m.ty=0; copy.style.transform=""; });
+  if("ResizeObserver" in window) new ResizeObserver(resize).observe(cv); else window.addEventListener("resize",resize);
   document.addEventListener("visibilitychange",()=>{ document.hidden?stop():start(); });
-  if("IntersectionObserver" in window){
-    new IntersectionObserver(en=>{ visible=en[0].isIntersecting; visible?start():stop(); }).observe(hero);
-  }
+  drawer.addEventListener("close",start);
   resize();
   start();
 })();
