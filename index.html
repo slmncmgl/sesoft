@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SeSoft landing page, v1.8 -->
+<!-- SeSoft landing page, v1.9 -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -94,6 +94,8 @@ body[data-theme="3"] .logo .se{background:var(--accent);color:var(--ink)}
 
 .svc-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .svc-top .svc-label{margin:0}
+.svc-label .lbl{color:var(--ink);font-weight:600}
+.svc-label .lbl-hint{color:var(--muted);margin-left:6px}
 .picker{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
 .picker b{font-weight:500;margin-right:4px}
 .picker button{
@@ -304,7 +306,7 @@ legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
 
 <section class="row services" aria-label="Hizmetler">
   <div class="svc-top">
-    <p class="svc-label" data-tr="Size Şu Konularda Yardımcı Olabilirim" data-en="Here Is Where I Can Help">Size Şu Konularda Yardımcı Olabilirim</p>
+    <p class="svc-label"><span class="lbl" data-tr="Size Şu Konularda Yardımcı Olabilirim" data-en="Here Is Where I Can Help">Size Şu Konularda Yardımcı Olabilirim</span> <span class="lbl-hint" data-tr="detaylar için birini seçin" data-en="pick one for details">detaylar için birini seçin</span></p>
     <!-- GEÇİCİ: tema seçici. Karar verince bu div'i ve alttaki "tema seçici" script bloğunu sil -->
     <div class="picker" role="group" aria-label="Tema">
       <b>Tema</b>
@@ -406,8 +408,8 @@ const SERVICES = [
     den:"A portal built for your team: leave requests and approvals, staff processes, and an AI interface that answers questions from your company files." }
 ];
 const HINT = {
-  tr:"Detayını görmek için aşağıdan bir başlık seçin.",
-  en:"Pick a topic below to see the details."
+  tr:"",
+  en:""
 };
 
 let lang = "tr";
