@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SeSoft landing page, v1.9 -->
+<!-- SeSoft landing page, v2.0 -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -59,8 +59,12 @@ body[data-theme="3"]{
     radial-gradient(45% 55% at 76% 40%,rgba(159,232,112,.35) 0%,rgba(159,232,112,0) 70%),
     radial-gradient(35% 40% at 8% 100%,rgba(29,158,117,.14) 0%,rgba(29,158,117,0) 70%);
 }
-body[data-theme="3"] .cta{background:var(--accent);color:var(--ink)}
-body[data-theme="3"] .cta::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent)}
+body[data-theme="3"] .cta{
+  background:var(--ink);color:var(--accent);
+  box-shadow:0 14px 28px -12px rgba(22,51,0,.55),0 0 0 1px rgba(22,51,0,.08);
+}
+body[data-theme="3"] .cta:hover{box-shadow:0 18px 34px -12px rgba(22,51,0,.65),0 0 0 4px rgba(159,232,112,.45)}
+body[data-theme="3"] .cta::after{background:linear-gradient(100deg,transparent,rgba(159,232,112,.35),transparent)}
 body[data-theme="3"] .tile[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--ink)}
 body[data-theme="3"] input.in:focus,body[data-theme="3"] textarea.in:focus{border-color:#1D9E75}
 body[data-theme="2"] .cta{background:var(--chrome);color:var(--ink);box-shadow:0 12px 30px -14px rgba(176,123,255,.8)}
@@ -126,10 +130,10 @@ body[data-theme="3"] .logo .se{background:var(--accent);color:var(--ink)}
 @media (min-width:880px){.stage{grid-template-columns:1.15fr .85fr;gap:24px}}
 .copy{position:relative;z-index:2;padding:28px 0;will-change:transform}
 h1{
-  font-family:var(--display);font-weight:600;letter-spacing:-0.035em;line-height:1.03;margin:0 0 22px;max-width:18ch;text-wrap:balance;
-  font-size:clamp(2.1rem,min(5vw,8.2vh),4.3rem);
+  font-family:var(--display);font-weight:600;letter-spacing:-0.035em;line-height:1.06;margin:0 0 20px;max-width:24ch;text-wrap:balance;
+  font-size:clamp(1.6rem,min(3.6vw,5.8vh),3.3rem);
 }
-.detail{min-height:7.2em;max-width:50ch;margin:0 0 22px;font-size:clamp(.95rem,1.25vw,1.05rem);color:var(--muted)}
+.detail{min-height:6.4em;max-width:50ch;margin:0 0 22px;font-size:clamp(.95rem,1.25vw,1.05rem);color:var(--muted)}
 .detail p{margin:0;transition:opacity .22s ease,transform .22s ease}
 .detail p.swap{opacity:0;transform:translateY(4px)}
 .detail .d-title{display:block;color:var(--ink);font-weight:500;margin-bottom:4px}
@@ -145,6 +149,7 @@ h1{
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
   transform:skewX(-20deg);transition:left .6s ease;
 }
+.cta{box-shadow:0 14px 28px -14px rgba(22,24,29,.55)}
 .cta:hover{transform:translateY(-2px)}
 .cta:hover::after{left:130%}
 .hint{font-size:13.5px;color:var(--muted);display:none}
@@ -166,6 +171,8 @@ body.has-assistant .hint{display:inline}
   #orb{height:auto;width:100%}
   .copy{padding-top:36px;padding-bottom:20px}
   .detail{min-height:6.6em}
+  .copy{padding-top:28px;padding-bottom:16px}
+  .copy h1{font-size:1.65rem}
 }
 @media (max-width:520px){
   :root{--gut:18px}
@@ -293,8 +300,8 @@ legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
 
 <main class="row stage">
   <div class="copy">
-    <h1 data-tr="Otomasyon, CRM ve tüm entegrasyonlarınız için buradayım."
-        data-en="Automation, CRM and all your integrations, in one place.">Otomasyon, CRM ve tüm entegrasyonlarınız için buradayım.</h1>
+    <h1 data-tr="Otomasyon, CRM ve Entegrasyon Çözümleriyle İş Süreçlerinizi Uçtan Uca Dönüştürün."
+        data-en="Transform Your Business Processes End to End with Automation, CRM and Integration Solutions.">Otomasyon, CRM ve Entegrasyon Çözümleriyle İş Süreçlerinizi Uçtan Uca Dönüştürün.</h1>
     <div class="detail" aria-live="polite"><p id="detail"></p></div>
     <div class="actions">
       <button class="cta" id="openForm" type="button" data-tr="İletişime geç" data-en="Get in touch">İletişime geç</button>
