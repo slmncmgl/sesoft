@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SeSoft landing page, v2.2 -->
+<!-- SeSoft landing page, v2.3 -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -287,7 +287,7 @@ legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
 
 <section class="row services" aria-label="Hizmetler">
   <div class="svc-top">
-    <p class="svc-label"><span class="lbl" data-tr="Size Şu Konularda Yardımcı Olabilirim" data-en="Here Is Where I Can Help">Size Şu Konularda Yardımcı Olabilirim</span> <span class="lbl-hint" data-tr="detaylar için birini seçin" data-en="pick one for details">detaylar için birini seçin</span></p>
+    <p class="svc-label"><span class="lbl" data-tr="Size Şu Konularda Yardımcı Olabilirim" data-en="Here Is Where I Can Help">Size Şu Konularda Yardımcı Olabilirim</span> <span class="lbl-hint" data-tr="detaylar için üzerine gelin, sabitlemek için tıklayın" data-en="hover for details, click to pin">detaylar için üzerine gelin, sabitlemek için tıklayın</span></p>
   </div>
   <div class="grid" id="grid"></div>
 </section>
@@ -388,6 +388,8 @@ const HINT = {
 
 let lang = "tr";
 let active = null;
+let shown = null, swapT = null;
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const grid = document.getElementById("grid");
 const chips = document.getElementById("chips");
 const detail = document.getElementById("detail");
@@ -398,6 +400,10 @@ SERVICES.forEach(s=>{
   b.setAttribute("aria-pressed","false");
   b.innerHTML = '<span class="t"></span><span class="dot" aria-hidden="true"></span>';
   b.addEventListener("click",()=>select(active === s.id ? null : s.id));
+  if(canHover){
+    b.addEventListener("mouseenter",()=>show(s.id));
+    b.addEventListener("focus",()=>show(s.id));
+  }
   grid.appendChild(b);
 
   const c = document.createElement("label");
@@ -407,7 +413,7 @@ SERVICES.forEach(s=>{
 });
 
 function renderDetail(){
-  const s = SERVICES.find(x=>x.id === active);
+  const s = SERVICES.find(x=>x.id === shown);
   detail.innerHTML = s
     ? '<span class="d-title"></span><span class="d-body"></span>'
     : '<span class="d-hint"></span>';
@@ -418,11 +424,21 @@ function renderDetail(){
     detail.querySelector(".d-hint").textContent = HINT[lang];
   }
 }
+function show(id){
+  if(id === shown) return;
+  shown = id;
+  clearTimeout(swapT);
+  detail.classList.add("swap");
+  swapT = setTimeout(()=>{ renderDetail(); detail.classList.remove("swap"); }, 120);
+}
 function select(id){
   active = id;
   grid.querySelectorAll(".tile").forEach(t=>t.setAttribute("aria-pressed", String(t.dataset.id === id)));
-  detail.classList.add("swap");
-  setTimeout(()=>{ renderDetail(); detail.classList.remove("swap"); }, 170);
+  show(id);
+}
+if(canHover){
+  grid.addEventListener("mouseleave",()=>show(active));
+  grid.addEventListener("focusout",e=>{ if(!grid.contains(e.relatedTarget)) show(active); });
 }
 function renderServiceLabels(){
   grid.querySelectorAll(".tile").forEach(t=>{
