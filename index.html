@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- SeSoft landing page, v2.0 -->
+<!-- SeSoft landing page, v2.2 -->
 <html lang="tr">
 <head>
 <meta charset="utf-8">
@@ -33,20 +33,7 @@ body{
   transition:background-color .5s ease;
 }
 
-/* ---------- V2: renkli tema ---------- */
-body[data-theme="2"]{
-  --bg:#F5F2FB;
-  --paper:#FFFFFF;
-  --ink:#1B1633;
-  --muted:#645E7C;
-  --line:#E3DDF0;
-  --chrome:linear-gradient(110deg,#FF7AB6 0%,#B07BFF 34%,#5CC8FF 66%,#6EF0C2 100%);
-  --orbglow:#ffffff;
-  background-image:
-    radial-gradient(40% 45% at 12% 8%,rgba(255,170,210,.45) 0%,rgba(255,170,210,0) 70%),
-    radial-gradient(45% 55% at 78% 40%,rgba(170,215,255,.55) 0%,rgba(170,215,255,0) 70%),
-    radial-gradient(35% 40% at 55% 100%,rgba(180,255,225,.40) 0%,rgba(180,255,225,0) 70%);
-}
+/* ---------- Yeşil tema ---------- */
 body[data-theme="3"]{
   --bg:#ECEFEC;
   --paper:#FFFFFF;
@@ -60,18 +47,13 @@ body[data-theme="3"]{
     radial-gradient(35% 40% at 8% 100%,rgba(29,158,117,.14) 0%,rgba(29,158,117,0) 70%);
 }
 body[data-theme="3"] .cta{
-  background:var(--ink);color:var(--accent);
-  box-shadow:0 14px 28px -12px rgba(22,51,0,.55),0 0 0 1px rgba(22,51,0,.08);
+  background:var(--accent);color:var(--ink);font-weight:600;
+  box-shadow:0 14px 28px -12px rgba(22,51,0,.55),0 0 0 1px rgba(22,51,0,.10);
 }
 body[data-theme="3"] .cta:hover{box-shadow:0 18px 34px -12px rgba(22,51,0,.65),0 0 0 4px rgba(159,232,112,.45)}
-body[data-theme="3"] .cta::after{background:linear-gradient(100deg,transparent,rgba(159,232,112,.35),transparent)}
+body[data-theme="3"] .cta::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent)}
 body[data-theme="3"] .tile[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--ink)}
 body[data-theme="3"] input.in:focus,body[data-theme="3"] textarea.in:focus{border-color:#1D9E75}
-body[data-theme="2"] .cta{background:var(--chrome);color:var(--ink);box-shadow:0 12px 30px -14px rgba(176,123,255,.8)}
-body[data-theme="2"] .lang button[aria-pressed="true"],
-body[data-theme="2"] .picker button[aria-pressed="true"]{background:var(--ink)}
-body[data-theme="2"] .tile[aria-pressed="true"] .dot{background:var(--chrome);border-color:transparent}
-body[data-theme="2"] .chip input:checked + span{background:var(--ink)}
 a{color:inherit}
 button{font:inherit;color:inherit}
 ::selection{background:var(--ink);color:var(--bg)}
@@ -93,20 +75,12 @@ button{font:inherit;color:inherit}
 
 /* Logo: SE kapsül içinde ters, SOFT düz */
 .logo .se{background:var(--ink);color:var(--paper);padding:4px 7px 3px;border-radius:999px;margin-right:2px}
-body[data-theme="2"] .logo .se{background:var(--chrome);color:var(--ink)}
 body[data-theme="3"] .logo .se{background:var(--accent);color:var(--ink)}
 
 .svc-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .svc-top .svc-label{margin:0}
 .svc-label .lbl{color:var(--ink);font-weight:600}
 .svc-label .lbl-hint{color:var(--muted);margin-left:6px}
-.picker{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
-.picker b{font-weight:500;margin-right:4px}
-.picker button{
-  font-size:12px;font-weight:500;border:1px solid var(--line);background:var(--paper);color:var(--muted);
-  border-radius:999px;padding:3px 9px;cursor:pointer;transition:all .2s;
-}
-.picker button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .top-right{display:flex;align-items:center;gap:8px}
 .ico{
   width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
@@ -274,7 +248,7 @@ legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
 }
 </style>
 </head>
-<body data-theme="1">
+<body data-theme="3">
 
 <header class="row top">
   <div class="mark" aria-label="SESOFT Bilişim Danışmanlık Hizmetleri">
@@ -314,13 +288,6 @@ legend{font-size:13px;color:var(--muted);margin-bottom:8px;padding:0}
 <section class="row services" aria-label="Hizmetler">
   <div class="svc-top">
     <p class="svc-label"><span class="lbl" data-tr="Size Şu Konularda Yardımcı Olabilirim" data-en="Here Is Where I Can Help">Size Şu Konularda Yardımcı Olabilirim</span> <span class="lbl-hint" data-tr="detaylar için birini seçin" data-en="pick one for details">detaylar için birini seçin</span></p>
-    <!-- GEÇİCİ: tema seçici. Karar verince bu div'i ve alttaki "tema seçici" script bloğunu sil -->
-    <div class="picker" role="group" aria-label="Tema">
-      <b>Tema</b>
-      <button type="button" data-t="1">V1</button>
-      <button type="button" data-t="2">V2</button>
-      <button type="button" data-t="3">V3</button>
-    </div>
   </div>
   <div class="grid" id="grid"></div>
 </section>
@@ -625,21 +592,8 @@ if(vapiReady){
 renderServiceLabels();
 renderDetail();
 
-/* ---------- GEÇİCİ: tema seçici ---------- */
-(function(){
-  const tbtns = document.querySelectorAll(".picker button[data-t]");
-  function setTheme(t){
-    document.body.dataset.theme = t;
-    tbtns.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.t === t)));
-    window.__iri = t === "2" ? 1 : 0;
-    window.__green = t === "3" ? 1 : 0;
-    try{ localStorage.setItem("sesoft_theme", t); }catch(e){}
-  }
-  let th = new URLSearchParams(location.search).get("theme");
-  if(!th){ try{ th = localStorage.getItem("sesoft_theme"); }catch(e){} }
-  setTheme(["1","2","3"].includes(th) ? th : "1");
-  tbtns.forEach(b=>b.addEventListener("click",()=>setTheme(b.dataset.t)));
-})();
+window.__iri = 0;
+window.__green = 1;
 
 
 /* ---------- sıvı krom (WebGL) ---------- */
